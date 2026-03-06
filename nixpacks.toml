@@ -1,0 +1,27 @@
+# nixpacks.toml
+name = "bingx-trading-bot"
+type = "python"
+
+[phases.setup]
+nixPkgs = ["python311", "python311Packages.pip"]
+
+[phases.install]
+cmds = [
+    "pip install --upgrade pip",
+    "pip install -r requirements.txt",
+    "pip list > /app/installed_packages.txt",
+    "echo 'Installed packages:' && cat /app/installed_packages.txt"
+]
+
+[phases.build]
+cmds = [
+    "echo 'Build completed'"
+]
+
+[start]
+cmd = "python main.py"
+
+[environments.production]
+variables = { 
+    "PYTHONUNBUFFERED" = "1"
+}
