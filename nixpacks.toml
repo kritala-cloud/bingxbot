@@ -8,9 +8,7 @@ nixPkgs = ["python311", "python311Packages.pip"]
 [phases.install]
 cmds = [
     "pip install --upgrade pip",
-    "pip install -r requirements.txt",
-    "pip list > /app/installed_packages.txt",
-    "echo 'Installed packages:' && cat /app/installed_packages.txt"
+    "pip install -r requirements.txt"
 ]
 
 [phases.build]
@@ -22,6 +20,4 @@ cmds = [
 cmd = "python main.py"
 
 [environments.production]
-variables = { 
-    "PYTHONUNBUFFERED" = "1"
-}
+variables = { PYTHONUNBUFFERED = "1" }
